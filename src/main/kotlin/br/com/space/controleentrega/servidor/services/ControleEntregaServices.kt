@@ -4,7 +4,9 @@ import br.com.space.controleentrega.servidor.enum.Errors
 import br.com.space.controleentrega.servidor.exception.BadRequestException
 import br.com.space.controleentrega.servidor.modelo.ControleEntrega
 import br.com.space.controleentrega.servidor.repository.ControleEntregaRepository
+import org.springframework.stereotype.Service
 
+@Service
 class ControleEntregaServices(val repository: ControleEntregaRepository) {
 
     fun saveControleEntrega(controleEntrega: ControleEntrega) : ControleEntrega {

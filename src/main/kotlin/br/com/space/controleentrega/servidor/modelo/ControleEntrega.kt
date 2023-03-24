@@ -7,27 +7,27 @@ import jakarta.persistence.Id
 @Entity(name = "contentregaped")
 class ControleEntrega(@Id
                       @Column(name = "cen_codigo")
-                      var codigo:Int?=null,
-                      @Column(name = "cen_filial")
-                      var filial:Int?=null,
+                      var codigo:Int,
+                      @Column(name = "cen_filcodigo")
+                      var filial:Int = 0,
                       @Column(name = "cen_spvcodigo")
-                      var serie:String?=null,
+                      var serie:String = "",
                       @Column(name = "cen_pednumero")
-                      var numPed:Int?=null,
+                      var numPed:Int = 0,
                       @Column(name = "cen_carga")
-                      var carga:Int?=null,
+                      var carga:Int = 0,
                       @Column(name = "cen_usrlogin")
-                      var usuario:String?=null,
+                      var usuario:String = "",
                       @Column(name = "cen_dataentrega")
                       var data:String?=null,
                       @Column(name = "cen_horaentrega")
-                      var hora:String?=null,
+                      var hora:String = "",
                       @Column(name = "cen_latitude")
-                      var latitude:Double?=null,
+                      var latitude:Double = 0.00,
                       @Column(name = "cen_longitude")
-                      var longitude:Int?=null,
+                      var longitude:Double = 0.00,
                       @Column(name = "cen_ocecodigo")
-                      var codigoOcorrencia:Int?=null,
+                      var codigoOcorrencia:Int = 0,
                       @Column(name = "cen_assinatura")
                       var assinatura:ByteArray?=null){
 }
