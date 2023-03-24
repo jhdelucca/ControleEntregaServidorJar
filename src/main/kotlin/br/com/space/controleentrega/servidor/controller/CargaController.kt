@@ -1,0 +1,48 @@
+package br.com.space.controleentrega.servidor.controller
+
+import br.com.space.controleentrega.servidor.enum.Errors
+import br.com.space.controleentrega.servidor.exception.NotFoundException
+import br.com.space.controleentrega.servidor.response.CargaResponse
+import br.com.space.controleentrega.servidor.services.CargaService
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping("carga")
+class CargaController(val service: CargaService) {
+
+    @GetMapping("/transportador/{filial}/{codigo}")
+    fun getCargaTransportador(@PathVariable(name = "codigo") codigo:Int ,
+                              @PathVariable(name = "filial") filial:Int):CargaResponse {
+        try{
+
+            var carga = service.getCargaTransportador(codigo,filial)
+            if(carga.isEmpty()) {
+                return CargaResponse(false,"Não existe carga para motorista" , carga)
+            }else{
+                return CargaResponse(true,"Cargas Recuperadas" , carga)
+            }
+        }catch (e:Exception) {
+            throw NotFoundException(Errors.VK003.message, Errors.VK003.code);
+        }
+    }
+
+    @GetMapping("/motorista/{filial}/{codigo}")
+    fun getCargaMotorista(@PathVariable(name = "codigo") codigo:Int,
+                          @PathVariable(name = "filial") filial:Int):CargaResponse {
+        try{
+            var carga = service.getCargaMotorista(codigo,filial)
+            if(carga.isEmpty()) {
+                return CargaResponse(false,"Não existe carga para motorista" , carga)
+            }else{
+                return CargaResponse(true,"Cargas Recuperadas" , carga)
+            }
+        }catch (e:Exception) {
+            throw NotFoundException(Errors.VK003.message, Errors.VK003.code);
+        }
+    }
+
+
+}
