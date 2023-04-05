@@ -28,6 +28,8 @@ class ControleEntrega(@Id
                       var longitude:Double = 0.00,
                       @Column(name = "cen_ocecodigo")
                       var codigoOcorrencia:Int = 0,
+                      @Column(name="cen_recebedor")
+                      var recebedor:String = "",
                       @Column(name = "cen_assinatura")
                       var assinatura:ByteArray?=null){
 }
