@@ -15,4 +15,8 @@ class CargaService(val repository: CargaRepository) {
         return repository.getCargaTransportador(codigo,filial)
     }
 
+    fun alteraCargaEntregue(filial: Int, carga:Int) {
+         repository.alteraCargaEntregue(filial,carga)
+    }
+
 }

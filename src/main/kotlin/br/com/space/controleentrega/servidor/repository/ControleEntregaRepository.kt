@@ -10,4 +10,7 @@ interface ControleEntregaRepository:CrudRepository<ControleEntrega,Int> {
             "and cen_filcodigo = :filial " , nativeQuery = true)
     fun getControleEntrega(pedido:Int, serie:String , filial:Int) : ControleEntrega
 
+    @Query("select count(*)as cont_entregas from contentregaped where cen_filcodigo = :filial and cen_carga = :carga" , nativeQuery = true)
+    fun getCountEntrega(filial:Int , carga:Int) : Int
+
 }

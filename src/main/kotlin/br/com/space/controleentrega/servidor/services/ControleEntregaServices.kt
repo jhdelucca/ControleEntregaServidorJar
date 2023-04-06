@@ -21,4 +21,8 @@ class ControleEntregaServices(val repository: ControleEntregaRepository) {
     fun getControleEntrega(itensPedidoRequest: ItensPedidoRequest) : ControleEntrega {
        return  repository.getControleEntrega(itensPedidoRequest.pedido,itensPedidoRequest.serie,itensPedidoRequest.filial)
     }
+
+    fun getCountControle(filal:Int,carga:Int):Int {
+        return repository.getCountEntrega(filal,carga)
+    }
 }

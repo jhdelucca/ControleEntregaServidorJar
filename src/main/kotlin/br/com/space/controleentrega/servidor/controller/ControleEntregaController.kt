@@ -7,11 +7,7 @@ import br.com.space.controleentrega.servidor.modelo.ControleEntrega
 import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import br.com.space.controleentrega.servidor.response.ControleEntregaResponse
 import br.com.space.controleentrega.servidor.services.ControleEntregaServices
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/controleentrega")
@@ -19,12 +15,12 @@ class ControleEntregaController(val service: ControleEntregaServices) {
 
     @PostMapping
     fun saveControleEntrega(@RequestBody controleEntrega: ControleEntrega): ControleEntrega {
+
         try {
             return service.saveControleEntrega(controleEntrega)
         } catch (ex: Exception) {
             throw BadRequestException(Errors.VK005.message, Errors.VK005.code);
         }
-
     }
 
     @PostMapping("/recupera")
@@ -36,6 +32,12 @@ class ControleEntregaController(val service: ControleEntregaServices) {
             throw NotFoundException(Errors.VK006.message, Errors.VK006.code)
         }
     }
+    @GetMapping("/contador/{filial}/{carga}")
+    fun getCountPedidos(@PathVariable(name="filial") filial: Int,
+                        @PathVariable(name="carga") carga:Int):Int {
+        return service.getCountControle(filial,carga)
+    }
 
-        
+
+
 }

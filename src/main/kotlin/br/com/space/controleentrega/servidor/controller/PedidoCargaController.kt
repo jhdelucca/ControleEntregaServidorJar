@@ -37,4 +37,11 @@ class PedidoCargaController(val service: PedidoCargaService) {
             return PedidoCargaResponse(true,"Pedidos entregues retornados" , pedido)
         }
     }
+
+    @GetMapping("/contador/{filial}/{carga}")
+    fun getCountPedidos(@PathVariable(name="filial") filial: Int,
+                        @PathVariable(name="carga") carga:Int):Int {
+        return service.getCountPedidos(filial,carga)
+    }
+
 }

@@ -41,6 +41,10 @@ class PedidoCarga(
     var numeroEnd:String?=null,
     @Column(name="END_COMPLEMENTO")
     var complemento:String? = null,
+    @Column(name="END_FONE1")
+    var fone:String? = null,
+    @Column(name="END_CELULAR")
+    var celular:String? = null,
     @Column(name="BAI_DESC")
     var bairro:String? = null,
     @Column(name="CID_DESC")
