@@ -17,6 +17,8 @@ class PedidoCarga(
     @Id
     @Column(name = "PED_NUMERO" , unique = true)
     var numero: Int? = null,
+    @Column(name = "PED_STPCODIGO" , unique = true)
+    var stpCodigo: String? = null,
     @Column(name = "PED_CARGA")
     var carga: Int? = null,
     @Column(name="PED_VALOR")

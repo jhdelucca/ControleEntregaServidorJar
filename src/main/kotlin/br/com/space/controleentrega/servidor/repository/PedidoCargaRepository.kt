@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository
 
 interface PedidoCargaRepository:CrudRepository<PedidoCarga,Int> {
 
-    @Query("select ped_carga, ped_spvcodigo, ped_numero,ped_filcodigo, ped_valor, ped_pescodigo, pes_razao, " +
+    @Query("select ped_carga, ped_spvcodigo, ped_numero,ped_filcodigo, ped_stpcodigo,ped_valor, ped_pescodigo, pes_razao, " +
             " pes_fantasia, ped_qtdevol, ped_fpgcodigo, pes_cnpjcpf, fpg_desc, end_logradouro, end_numero, " +
             " end_complemento, end_fone1,end_celular,bai_desc, cid_desc, end_ufsigla, ped_ordement,cen_codigo,cen_ocecodigo,\n" +
             " coalesce((select max(not_snfnumero) from nota where not_lnpcodigo = ped_lnpcodigo and not_filcodigo = ped_filcodigo and ped_lnpcodigo <> 0),0) as numnota\n" +
@@ -18,7 +18,7 @@ interface PedidoCargaRepository:CrudRepository<PedidoCarga,Int> {
     fun getPedidosCarga(codigo:Int , filial:Int) : List<PedidoCarga>
 
 
-    @Query("select ped_filcodigo, ped_carga, ped_spvcodigo, ped_numero, ped_valor, ped_pescodigo, pes_razao, pes_fantasia, ped_qtdevol, ped_fpgcodigo,\n" +
+    @Query("select ped_filcodigo, ped_carga, ped_spvcodigo, ped_numero, ped_stpcodigo , ped_valor, ped_pescodigo, pes_razao, pes_fantasia, ped_qtdevol, ped_fpgcodigo,\n" +
             "pes_cnpjcpf, fpg_desc, end_logradouro, end_numero, end_complemento, bai_desc, cid_desc, end_ufsigla, end_fone1,end_celular, ped_ordement,cen_codigo,cen_ocecodigo,\n" +
             "coalesce((select max(not_snfnumero) from nota where not_lnpcodigo = ped_lnpcodigo and not_filcodigo = ped_filcodigo and ped_lnpcodigo <> 0),0) as numnota\n" +
             "from pedidos left join contentregaped on ped_numero = cen_pednumero and ped_spvcodigo = cen_spvcodigo and ped_filcodigo = cen_filcodigo left join ocorentrega on cen_ocecodigo = oce_codigo ,carga, pessoa, formapagto, enderecos, bairro, cidade\n" +
