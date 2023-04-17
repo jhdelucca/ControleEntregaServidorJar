@@ -9,7 +9,8 @@ enum class Errors(val code:String, val message: String) {
     VK005("VK-005","Não existe pedido na base de dados"),
     VK006("VK-006","Não existe controle de entrega na base de dados"),
     VK007("VK-007","Não existe carga na base de dados"),
-    VK008("VK-008","Ja existe log de pedidos com esse ID")
+    VK008("VK-008","Ja existe log de pedidos com esse ID"),
+
 
 
 }

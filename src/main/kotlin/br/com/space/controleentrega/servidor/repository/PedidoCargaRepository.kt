@@ -14,7 +14,7 @@ interface PedidoCargaRepository:CrudRepository<PedidoCarga,Int> {
             " ped_filcodigo = cen_filcodigo left join ocorentrega on cen_ocecodigo = oce_codigo ,carga, pessoa, formapagto, enderecos, bairro, cidade\n" +
             " where ped_carga = car_codigo and ped_filcodigo = car_filcodigo and ped_pescodigo = pes_codigo and ped_fpgcodigo = fpg_codigo\n" +
             " and ped_endentrega = end_codigo and ped_pescodigo = end_pescodigo and end_baicodigo = bai_codigo and end_cidcodigo = cid_codigo\n" +
-            " and car_situacao = 'T' and car_codigo = :codigo and ped_filcodigo = :filial" , nativeQuery = true)
+            " and car_situacao = 'T' and car_codigo = :codigo and ped_filcodigo = :filial order by ped_ordement" , nativeQuery = true)
     fun getPedidosCarga(codigo:Int , filial:Int) : List<PedidoCarga>
 
 
@@ -23,7 +23,7 @@ interface PedidoCargaRepository:CrudRepository<PedidoCarga,Int> {
             "coalesce((select max(not_snfnumero) from nota where not_lnpcodigo = ped_lnpcodigo and not_filcodigo = ped_filcodigo and ped_lnpcodigo <> 0),0) as numnota\n" +
             "from pedidos left join contentregaped on ped_numero = cen_pednumero and ped_spvcodigo = cen_spvcodigo and ped_filcodigo = cen_filcodigo left join ocorentrega on cen_ocecodigo = oce_codigo ,carga, pessoa, formapagto, enderecos, bairro, cidade\n" +
             "where ped_carga = car_codigo and ped_filcodigo = car_filcodigo and ped_pescodigo = pes_codigo and ped_fpgcodigo = fpg_codigo\n" +
-            "and ped_endentrega = end_codigo and ped_pescodigo = end_pescodigo and end_baicodigo = bai_codigo and end_cidcodigo = cid_codigo and cen_usrlogin = :usuario and cen_ocecodigo = 0 and cen_dataentrega = :dataEntrega " +
+            "and ped_endentrega = end_codigo and ped_pescodigo = end_pescodigo and end_baicodigo = bai_codigo and end_cidcodigo = cid_codigo and cen_usrlogin = :usuario and (cen_ocecodigo = 0 or cen_parcial = 1) and cen_dataentrega = :dataEntrega " +
             "and ped_filcodigo = :filial" , nativeQuery = true)
     fun getPedidosEntreguesMotorista(filial: Int,usuario:String,dataEntrega:String) :List<PedidoCarga>
 

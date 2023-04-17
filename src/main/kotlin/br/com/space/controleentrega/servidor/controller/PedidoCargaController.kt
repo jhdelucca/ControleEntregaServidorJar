@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController
 class PedidoCargaController(val service: PedidoCargaService) {
 
     @GetMapping("/{filial}/{codigo}")
-    fun getPedidosCarga(@PathVariable(name = "codigo") codigo: Int,
-        @PathVariable(name = "filial") filial: Int ): PedidoCargaResponse {
+    fun getPedidosCarga(
+        @PathVariable(name = "codigo") codigo: Int,
+        @PathVariable(name = "filial") filial: Int
+    ): PedidoCargaResponse {
         var pedido = service.getPedidosCarga(codigo, filial)
 
         if (pedido.isEmpty()) {
@@ -31,17 +33,19 @@ class PedidoCargaController(val service: PedidoCargaService) {
     fun getPedidosEntreguesMotorista(@RequestBody request: PedidoEntregueMotoristaRequest): PedidoCargaResponse {
         var pedido = service.getPedidosEntreguesMotorista(request)
 
-        if(pedido.isEmpty()) {
-            return PedidoCargaResponse(false,"Não há pedidos entregues" , pedido)
-        }else{
-            return PedidoCargaResponse(true,"Pedidos entregues retornados" , pedido)
+        if (pedido.isEmpty()) {
+            return PedidoCargaResponse(false, "Não há pedidos entregues", pedido)
+        } else {
+            return PedidoCargaResponse(true, "Pedidos entregues retornados", pedido)
         }
     }
 
     @GetMapping("/contador/{filial}/{carga}")
-    fun getCountPedidos(@PathVariable(name="filial") filial: Int,
-                        @PathVariable(name="carga") carga:Int):Int {
-        return service.getCountPedidos(filial,carga)
+    fun getCountPedidos(
+        @PathVariable(name = "filial") filial: Int,
+        @PathVariable(name = "carga") carga: Int
+    ): Int {
+        return service.getCountPedidos(filial, carga)
     }
 
 }

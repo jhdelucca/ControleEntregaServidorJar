@@ -4,6 +4,7 @@ import br.com.space.controleentrega.servidor.enum.Errors
 import br.com.space.controleentrega.servidor.exception.BadRequestException
 import br.com.space.controleentrega.servidor.exception.NotFoundException
 import br.com.space.controleentrega.servidor.modelo.ControleEntrega
+import br.com.space.controleentrega.servidor.request.AlteraControleEntregaRequest
 import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import br.com.space.controleentrega.servidor.response.ControleEntregaResponse
 import br.com.space.controleentrega.servidor.services.ControleEntregaServices
@@ -17,6 +18,8 @@ class ControleEntregaController(val service: ControleEntregaServices) {
     fun saveControleEntrega(@RequestBody controleEntrega: ControleEntrega): ControleEntrega {
 
         try {
+            val controleEntrega = service.saveControleEntrega(controleEntrega)
+            val teste = controleEntrega.codigo
             return service.saveControleEntrega(controleEntrega)
         } catch (ex: Exception) {
             throw BadRequestException(Errors.VK005.message, Errors.VK005.code);
@@ -36,6 +39,15 @@ class ControleEntregaController(val service: ControleEntregaServices) {
     fun getCountPedidos(@PathVariable(name="filial") filial: Int,
                         @PathVariable(name="carga") carga:Int):Int {
         return service.getCountControle(filial,carga)
+    }
+
+    @PutMapping()
+    fun alteraCargaEntregue(@RequestBody alteraControle: AlteraControleEntregaRequest) {
+        try {
+            service.alteraControleEntrega(alteraControle)
+        } catch (ex: Exception) {
+            throw BadRequestException(Errors.VK006.message, Errors.VK006.code)
+        }
     }
 
 
