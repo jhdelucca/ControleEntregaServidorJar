@@ -1,14 +1,12 @@
 package br.com.space.controleentrega.servidor.controller
 
+import br.com.space.controleentrega.servidor.enum.Errors
+import br.com.space.controleentrega.servidor.exception.BadRequestException
+import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import br.com.space.controleentrega.servidor.request.PedidoEntregueMotoristaRequest
 import br.com.space.controleentrega.servidor.response.PedidoCargaResponse
 import br.com.space.controleentrega.servidor.services.PedidoCargaService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("pedidos")
@@ -47,5 +45,6 @@ class PedidoCargaController(val service: PedidoCargaService) {
     ): Int {
         return service.getCountPedidos(filial, carga)
     }
+
 
 }

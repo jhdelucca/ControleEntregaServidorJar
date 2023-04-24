@@ -18,8 +18,6 @@ class ControleEntregaController(val service: ControleEntregaServices) {
     fun saveControleEntrega(@RequestBody controleEntrega: ControleEntrega): ControleEntrega {
 
         try {
-            val controleEntrega = service.saveControleEntrega(controleEntrega)
-            val teste = controleEntrega.codigo
             return service.saveControleEntrega(controleEntrega)
         } catch (ex: Exception) {
             throw BadRequestException(Errors.VK005.message, Errors.VK005.code);

@@ -6,3 +6,7 @@ spring:
     url: jdbc:mysql://localhost:3306/apicheckout
     username: root
     password: '@kalunga123'
+server:
+  port: 8080
+  servlet.context-path: /ControleEntregaServidor
+

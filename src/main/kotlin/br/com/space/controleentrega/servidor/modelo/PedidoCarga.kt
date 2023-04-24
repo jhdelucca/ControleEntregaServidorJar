@@ -59,5 +59,7 @@ class PedidoCarga(
     var codigoControleEntrega:Int ?=null,
     @Column(name="CEN_OCECODIGO")
     var codigoOcorrencia:Int ?=null,
+    @Column(name="CEN_PARCIAL")
+    var parcial:Int ?=null,
     @Column(name="numnota")
     var numeroNota:Int ?=null) { }

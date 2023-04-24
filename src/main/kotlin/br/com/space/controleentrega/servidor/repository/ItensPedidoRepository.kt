@@ -10,6 +10,6 @@ interface ItensPedidoRepository:CrudRepository<ItensPedido , Int> {
             "ipv_unpquant,ipv_quantidade,ipv_precovenda from pedidos,itenspedido,produto where pedidos.ped_Filcodigo = " +
             "itenspedido.Ipv_Filcodigo And pedidos.ped_Spvcodigo = itenspedido.Ipv_Spvcodigo And pedidos.ped_Numero = " +
             "itenspedido.Ipv_pedNumero And itenspedido.Ipv_Procodigo = produto.pro_codigo And pedidos.ped_filcodigo = " +
-            ":filial And pedidos.ped_spvcodigo = :serie And pedidos.ped_numero = :pedido" , nativeQuery = true)
+            ":filial And pedidos.ped_spvcodigo = :serie And pedidos.ped_numero = :pedido order by ipv_procodigo" , nativeQuery = true)
     fun getItensPedidoCarga(filial:Int, serie:String , pedido:Int) : List<ItensPedido>
 }

@@ -2,6 +2,7 @@ package br.com.space.controleentrega.servidor.services
 
 import br.com.space.controleentrega.servidor.modelo.PedidoCarga
 import br.com.space.controleentrega.servidor.repository.PedidoCargaRepository
+import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import br.com.space.controleentrega.servidor.request.PedidoEntregueMotoristaRequest
 import org.springframework.stereotype.Service
 
@@ -19,5 +20,6 @@ class PedidoCargaService(val repository: PedidoCargaRepository) {
     fun getCountPedidos(filial: Int , carga:Int):Int {
         return repository.getCountPedidos(filial,carga)
     }
+
 
 }
