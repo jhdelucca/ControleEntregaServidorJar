@@ -4,8 +4,10 @@ import br.com.space.controleentrega.servidor.enum.Errors
 import br.com.space.controleentrega.servidor.exception.BadRequestException
 import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import br.com.space.controleentrega.servidor.request.PedidoEntregueMotoristaRequest
+import br.com.space.controleentrega.servidor.request.VisaoCoordenadorRequest
 import br.com.space.controleentrega.servidor.response.PedidoCargaResponse
 import br.com.space.controleentrega.servidor.services.PedidoCargaService
+import org.springframework.data.repository.query.Param
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -44,6 +46,16 @@ class PedidoCargaController(val service: PedidoCargaService) {
         @PathVariable(name = "carga") carga: Int
     ): Int {
         return service.getCountPedidos(filial, carga)
+    }
+    @PostMapping("/coordenador")
+    fun getPedidosCoordenador(@RequestBody coordenadorRequest: VisaoCoordenadorRequest) : PedidoCargaResponse {
+        var pedidos = service.getPedidosCoordenador(coordenadorRequest)
+
+        if (pedidos.isEmpty()) {
+            return PedidoCargaResponse(false, "Não há pedidos entregues", pedidos)
+        } else {
+            return PedidoCargaResponse(true, "Pedidos entregues retornados", pedidos)
+        }
     }
 
 
