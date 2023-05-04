@@ -13,7 +13,9 @@ class ColaboradorCargo(    @Id
                            @Column(name="CRG_MOTORISTA")
                            var motorista:Int = 0,
                            @Column(name="CRG_COORDENADOR")
-                           var coordenador:Int = 0) {
+                           var coordenador:Int = 0,
+                           @Column(name="CLB_CELULAR")
+                           var celular:String="") {
 
 
 }
