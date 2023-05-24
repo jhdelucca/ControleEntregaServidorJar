@@ -3,13 +3,15 @@ package br.com.space.controleentrega.servidor.services
 import br.com.space.controleentrega.servidor.enum.Errors
 import br.com.space.controleentrega.servidor.exception.BadRequestException
 import br.com.space.controleentrega.servidor.modelo.ControleEntrega
+import br.com.space.controleentrega.servidor.modelo.ItensControleEntrega
 import br.com.space.controleentrega.servidor.repository.ControleEntregaRepository
+import br.com.space.controleentrega.servidor.repository.ItensControleEntregaRepository
 import br.com.space.controleentrega.servidor.request.AlteraControleEntregaRequest
 import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import org.springframework.stereotype.Service
 
 @Service
-class ControleEntregaServices(val repository: ControleEntregaRepository) {
+class ControleEntregaServices(val repository: ControleEntregaRepository, val itensControleEntregaRepository: ItensControleEntregaRepository) {
 
     fun saveControleEntrega(controleEntrega: ControleEntrega) : ControleEntrega {
         if (repository.existsById(controleEntrega.codigo.toString().toInt())) {
@@ -30,5 +32,10 @@ class ControleEntregaServices(val repository: ControleEntregaRepository) {
     fun alteraControleEntrega(controleEntrega: AlteraControleEntregaRequest) {
         repository.alteraControleEntrega(controleEntrega.filial,controleEntrega.numeroPedido,
             controleEntrega.serie,controleEntrega.assinatura,controleEntrega.recebedor)
+    }
+
+    fun insereItensControleEntrega(itensControleEntrega: MutableIterable<ItensControleEntrega>) : MutableIterable<ItensControleEntrega> {
+        return itensControleEntregaRepository.saveAll(itensControleEntrega)
+
     }
 }

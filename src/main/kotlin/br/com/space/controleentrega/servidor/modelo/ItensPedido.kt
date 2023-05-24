@@ -29,4 +29,6 @@ class ItensPedido(@Column(name="PED_FILCODIGO")
                   @Column(name="ipv_quantidade")
                   var quantidade:Double ?=null,
                   @Column(name="ipv_precovenda")
-                  var precovenda:Double ?=null) { }
+                  var precovenda:Double ?=null,
+                  @Column(name="cei_status")
+                  var status:String) { }

@@ -4,6 +4,7 @@ import br.com.space.controleentrega.servidor.enum.Errors
 import br.com.space.controleentrega.servidor.exception.BadRequestException
 import br.com.space.controleentrega.servidor.exception.NotFoundException
 import br.com.space.controleentrega.servidor.modelo.ControleEntrega
+import br.com.space.controleentrega.servidor.modelo.ItensControleEntrega
 import br.com.space.controleentrega.servidor.request.AlteraControleEntregaRequest
 import br.com.space.controleentrega.servidor.request.ItensPedidoRequest
 import br.com.space.controleentrega.servidor.response.ControleEntregaResponse
@@ -46,6 +47,16 @@ class ControleEntregaController(val service: ControleEntregaServices) {
         } catch (ex: Exception) {
             throw BadRequestException(Errors.VK006.message, Errors.VK006.code)
         }
+    }
+
+    @PostMapping("/itens")
+    fun insereItensControleEntrega(@RequestBody itensControleEntrega: MutableList<ItensControleEntrega>) : MutableIterable<ItensControleEntrega> {
+        try{
+            return service.insereItensControleEntrega(itensControleEntrega)
+        } catch (ex: Exception) {
+            throw BadRequestException(Errors.VK005.message, Errors.VK005.code);
+        }
+
     }
 
 

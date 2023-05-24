@@ -4,7 +4,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 
-@Entity(name="carga")
+@Entity
 class Carga(@Id
             @Column(name = "CAR_CODIGO" , unique = true)
             var codigo:Int,
@@ -15,4 +15,6 @@ class Carga(@Id
             @Column(name = "CAR_DATA")
             var data:String,
             @Column(name = "CAR_ENTREGUE")
-            var statusEntrega:String) { }
+            var statusEntrega:String,
+            @Column(name= "PA7_INFPRAPPCEN")
+            var informaProduto:Int) { }
