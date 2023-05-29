@@ -41,7 +41,7 @@ class ControleEntregaController(val service: ControleEntregaServices) {
     }
 
     @PutMapping()
-    fun alteraCargaEntregue(@RequestBody alteraControle: AlteraControleEntregaRequest) {
+    fun alteraControleEntrega(@RequestBody alteraControle: AlteraControleEntregaRequest) {
         try {
             service.alteraControleEntrega(alteraControle)
         } catch (ex: Exception) {

@@ -33,5 +33,8 @@ class ControleEntrega(@Id
                       @Column(name = "cen_assinatura")
                       var assinatura:ByteArray?=null,
                       @Column(name = "cen_parcial")
-                      var parcial:Int=0){
-}
+                      var parcial:Int=0,
+                      @Column(name="cen_tipodoc")
+                      var tipoDoc:Int=0,
+                      @Column(name="cen_documento")
+                      var documento:String){ }

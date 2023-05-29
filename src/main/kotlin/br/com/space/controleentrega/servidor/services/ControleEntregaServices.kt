@@ -31,7 +31,8 @@ class ControleEntregaServices(val repository: ControleEntregaRepository, val ite
 
     fun alteraControleEntrega(controleEntrega: AlteraControleEntregaRequest) {
         repository.alteraControleEntrega(controleEntrega.filial,controleEntrega.numeroPedido,
-            controleEntrega.serie,controleEntrega.assinatura,controleEntrega.recebedor)
+            controleEntrega.serie,controleEntrega.assinatura,controleEntrega.recebedor,
+            controleEntrega.tipoDoc,controleEntrega.documento)
     }
 
     fun insereItensControleEntrega(itensControleEntrega: MutableIterable<ItensControleEntrega>) : MutableIterable<ItensControleEntrega> {

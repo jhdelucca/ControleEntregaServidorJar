@@ -17,9 +17,10 @@ interface ControleEntregaRepository:CrudRepository<ControleEntrega,Int> {
 
     @Modifying
     @Transactional
-    @Query("update contentregaped set cen_assinatura = :assinatura , cen_recebedor = :recebedor" +
-            " where cen_filcodigo = :filial and " +
+    @Query("update contentregaped set cen_assinatura = :assinatura , cen_recebedor = :recebedor , " +
+            "cen_tipoDoc = :tipoDoc , cen_documento = :documento where cen_filcodigo = :filial and " +
             "cen_spvcodigo = :serie and cen_pednumero = :numeroPedido" , nativeQuery = true)
-    fun alteraControleEntrega(filial:Int , numeroPedido:Int , serie:String ,assinatura:ByteArray,recebedor:String)
+    fun alteraControleEntrega(filial:Int , numeroPedido:Int , serie:String ,assinatura:ByteArray,
+                              recebedor:String,tipoDoc:Int,documento:String)
 
 }
