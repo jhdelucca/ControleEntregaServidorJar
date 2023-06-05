@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("carga")
 class CargaController(val service: CargaService) {
 
-    @GetMapping("/transportador/{filial}/{codigo}")
+    @GetMapping("/transportador/{filial}/{codigo}/{usuario}")
     fun getCargaTransportador(@PathVariable(name = "codigo") codigo:Int ,
-                              @PathVariable(name = "filial") filial:Int):CargaResponse {
+                              @PathVariable(name = "filial",) filial:Int,
+                              @PathVariable(name = "usuario") usuario:String):CargaResponse {
         try{
 
-            var carga = service.getCargaTransportador(codigo,filial)
+            var carga = service.getCargaTransportador(codigo,filial,usuario)
             if(carga.isEmpty()) {
                 return CargaResponse(false,"Não existe carga para motorista" , carga)
             }else{
@@ -32,11 +33,12 @@ class CargaController(val service: CargaService) {
         }
     }
 
-    @GetMapping("/motorista/{filial}/{codigo}")
+    @GetMapping("/motorista/{filial}/{codigo}/{usuario}")
     fun getCargaMotorista(@PathVariable(name = "codigo") codigo:Int,
-                          @PathVariable(name = "filial") filial:Int):CargaResponse {
+                          @PathVariable(name = "filial") filial:Int,
+                          @PathVariable(name = "usuario") usuario:String):CargaResponse {
         try{
-            var carga = service.getCargaMotorista(codigo,filial)
+            var carga = service.getCargaMotorista(codigo,filial,usuario)
             if(carga.isEmpty()) {
                 return CargaResponse(false,"Não existe carga para motorista" , carga)
             }else{

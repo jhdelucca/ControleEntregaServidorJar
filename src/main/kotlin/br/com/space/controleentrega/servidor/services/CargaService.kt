@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service
 @Service
 class CargaService(val repository: CargaRepository) {
 
-    fun getCargaMotorista(codigo:Int , filial:Int): List<Carga> {
-        return repository.getCargaMotorista(codigo,filial)
+    fun getCargaMotorista(codigo:Int , filial:Int,usuario:String): List<Carga> {
+        return repository.getCargaMotorista(codigo,filial,usuario)
     }
 
-    fun getCargaTransportador(codigo:Int, filial:Int): List<Carga> {
-        return repository.getCargaTransportador(codigo,filial)
+    fun getCargaTransportador(codigo:Int, filial:Int, usuario:String): List<Carga> {
+        return repository.getCargaTransportador(codigo,filial,usuario)
     }
 
     fun alteraCargaEntregue(filial: Int, carga:Int) {
